@@ -1,0 +1,93 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# VS Code and PyCharm
+.vscode/
+.idea/
+
+# Test coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Logs and debug
+*.log
+logs/
+*.tmp
+*.bak
+
+# Python Egg
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+bin/
+var/
+sdist/
+wheels/
+pip-wheel-metadata/
+
+# Environment variables
+.env
+
+# Docker
+*.pid
+*.tar
+*.log
+docker-compose.override.yml
+
+# Lint and formatter
+.pylint.d/
+ruff_cache/
+__pypackages__/
+
+# Jupyter Notebook metadata
+*.nbconvert.ipynb
+
+# Local SQLite DBs or vectorstore cache (optional)
+*.db
+*.sqlite3
+*.faiss
+*.ann
+
+# Coverage reports
+coverage.xml
+*.cover
+
+# VS Code settings and launch configs
+.vscode/
+
+# Pyright or pyre type checker
+pyrightconfig.json
+.pyre/
+
+# 
+chroma_db
+logs
+source-data
+chat_history.db
+cleanup_log.csv

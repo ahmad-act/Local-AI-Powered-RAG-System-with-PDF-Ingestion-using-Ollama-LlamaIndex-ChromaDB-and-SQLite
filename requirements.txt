@@ -1,0 +1,16 @@
+# Core Requirements
+uvicorn
+fastapi
+python-dotenv
+python-multipart
+
+# LLM & Vector Store
+llama-index-core
+llama-index-vector-stores-chroma
+
+# Database & ORM
+
+# PDF Processing
+pymupdf # fitz
+
+# Utilities

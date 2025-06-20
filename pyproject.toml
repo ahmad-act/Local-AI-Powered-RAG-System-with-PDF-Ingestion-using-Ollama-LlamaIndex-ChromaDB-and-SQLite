@@ -1,0 +1,7 @@
+[project]
+name = "Local-AI-Powered-RAG-System-with-PDF-Ingestion-using-Ollama-LlamaIndex-ChromaDB-and-SQLite"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
