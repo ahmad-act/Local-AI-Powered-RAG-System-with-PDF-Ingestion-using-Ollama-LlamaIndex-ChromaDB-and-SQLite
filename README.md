@@ -1,8 +1,27 @@
-# Local AI Powered RAG System with PDF Ingestion using Ollama LlamaIndex ChromaDB and SQLite
+# 🤖 Local AI Powered RAG System with PDF Ingestion using Ollama LlamaIndex ChromaDB and SQLite
 
 This project implements a **Retrieval-Augmented Generation (RAG)** system designed to process and query PDF documents using a combination of document ingestion, vector-based retrieval, and language model-based question answering. The system is built using **FastAPI** for the API, **Ollama** for embeddings and language model inference, **ChromaDB** for vector storage, and **SQLite** for chat history persistence.
 
-## System Overview
+# 📚 Table of Contents
+
+1. [🤖 Project Title](#-local-ai-powered-rag-system-with-pdf-ingestion-using-ollama-llamaindex-chromadb-and-sqlite)  
+2. [🧭 System Overview](#-system-overview)  
+3. [✨ Key Features](#-key-features)  
+4. [🧩 Feature Details](#-features)  
+5. [🗂️ Project Structure](#-project-structure)  
+6. [🛠️ Setup](#-setup)  
+    - [📋 Prerequisites](#-prerequisites)  
+    - [📦 Installation](#-installation)  
+    - [🚀 Running the App](#-running-the-app)  
+7. [📡 Usage](#-usage)  
+    - [📥 POST `/ingest`](#-post-ingest)  
+    - [❓ POST `/ask`](#-post-ask)  
+    - [📚 GET `/history/{session_id}`](#-get-historysession_id)  
+    - [🗃️ GET `/history`](#-get-history)  
+    - [❌ DELETE `/history/{session_id}`](#-delete-historysession_id)  
+    - [🧹 DELETE `/cleanup-unused-sessions`](#-delete-cleanup-unused-sessions)
+
+## 🧭 System Overview
 
 A modular, production-quality Retrieval-Augmented Generation system using:
 
@@ -15,7 +34,7 @@ A modular, production-quality Retrieval-Augmented Generation system using:
 
 ---
 
-## Key Features
+## ✨ Key Features
 
 - **PDF Ingestion**: Supports uploading and processing PDF files.
 - **Duplicate Detection**: Prevents re-ingestion of the same files using file-level hashes.
@@ -25,7 +44,7 @@ A modular, production-quality Retrieval-Augmented Generation system using:
 
 ---
 
-## Features
+## 🧩 Features
 
 - 📄 PDF ingestion with metadata (filename, page number)
 - 🧠 Embedding with Ollama embeddings, stored in ChromaDB via LlamaIndex
@@ -43,7 +62,7 @@ A modular, production-quality Retrieval-Augmented Generation system using:
 
 ---
 
-## Project Structure
+## 🗂️ Project Structure
 
 ```text
 /                                  # Project root directory
@@ -80,9 +99,9 @@ A modular, production-quality Retrieval-Augmented Generation system using:
 ├── .env                           # Environment variable definitions (e.g., API keys)
 ```
 
-## Setup
+## 🛠️ Setup
 
-### Prerequisites
+### 📋 Prerequisites
 
 - Install [Python](https://www.python.org/downloads/)
 - Install [Ollama](https://ollama.com/download/windows)
@@ -96,7 +115,7 @@ A modular, production-quality Retrieval-Augmented Generation system using:
       ```
     ![Ollama model](readme-img/ollama-model-1.png)
 
-### Installation
+### 📦 Installation
 
 1. **Clone repository**
 
@@ -132,7 +151,7 @@ A modular, production-quality Retrieval-Augmented Generation system using:
     SESSION_DB=sqlite:///chat_history.db
     ```
 
-### Running the App
+### 🚀 Running the App
 
 1. **Start Ollama Server**
 
@@ -164,7 +183,7 @@ A modular, production-quality Retrieval-Augmented Generation system using:
    uvicorn src.api.app:app --host 0.0.0.0 --port 8000 --reload
    ```
 
-## Usage
+## 📡 Usage
 
 ### API Endpoints
 
@@ -206,7 +225,10 @@ A modular, production-quality Retrieval-Augmented Generation system using:
     "session_id":"9fbd6699-e1b6-4716-9ac1-9ebe6ce46266",
     "session_name":"provide short summary in less than 30 words",
     "answer":"<think>\nAlright, I need to summarize this research paper. The user has given me a detailed context with specific sections and keywords. They want a concise summary of the entire document within 30 words.\n\nFirst, let's read through the abstracts provided. Both abstracts mention how AI enhances full-stack development by improving problem-solving, collaboration, learning skills, etc. The main points are that AI boosts productivity, addresses innovation challenges, focuses on education and tools, and highlights ethical considerations.\n\nSo, I should capture the key elements: AI empowering developers, productivity gains through tools, collaborative improvements, skill enhancement, competitive disruption, and ethical issues. Also, mention the duration of the degree program.\n\nPutting it all together succinctly within 30 words. Maybe start with \"AI empowers full-stack development...\" and include main points about productivity, collaboration, skills, etc.\n</think>\n\nAI empowers full-stack developers through enhanced problem-solving, collaborative improvements, skill enhancement, leveraging AI tools, addressing innovation challenges, focusing on education, and balancing ethical considerations in a dynamic tech landscape.",
-    "sources":["source-data\\9fbd6699-e1b6-4716-9ac1-9ebe6ce46266\\test.pdf, page 1","source-data\\f6948368-5ead-4d24-9545-7f8c3bf4e581\\test.pdf, page 1"]}
+    "sources":[
+      "source-data\\9fbd6699-e1b6-4716-9ac1-9ebe6ce46266\\test.pdf, page 1","source-data\\f6948368-5ead-4d24-9545-7f8c3bf4e581\\test.pdf, page 1"
+    ]
+  }
   ```
 
   ![Upload file](readme-img/question-answer-1.png)
@@ -228,13 +250,14 @@ A modular, production-quality Retrieval-Augmented Generation system using:
     {
       "query":"provide short summary",
       "response":"<think>\nAlright, let me break this down. The user has provided a research plan on empowering full-stack development with AI. They want a short summary based on the context they've given.\n\nFirst, I need to understand the main points of the abstract. It talks about how AI is changing the tech landscape, especially for full-stack developers. They mention that AI isn't enough on its own; it's part of an ongoing battle for staying ahead with rapid innovation. There are challenges like infinite pace and limited time, which make it hard for developers to keep up.\n\nThe study also looks at productivity aspects—how AI tools help in problem-solving, code quality, collaboration, etc.—and discusses the future impact of AI on the software industry. It concludes that while AI brings benefits, human adaptability is crucial for effective progress.\n\nPutting this together, I should highlight the key points: AI's role, challenges, productivity gains, and ethical considerations. The summary should be concise, maybe around 150 words, to fit within the context they've provided.\n</think>\n\nThe research explores how artificial intelligence (AI) empowers full-stack developers in modern tech landscapes, emphasizing that while AI can enhance problem-solving and collaboration, its effectiveness depends on adaptability and human strategic thinking.",
-      "sources":"source-data\\9fbd6699-e1b6-4716-9ac1-9ebe6ce46266\\test.pdf, page 1"},
-      {
+      "sources":"source-data\\9fbd6699-e1b6-4716-9ac1-9ebe6ce46266\\test.pdf, page 1"
+    },
+    {
         "query":"provide short summary in less than 30 words",
         "response":"<think>\nAlright, I need to summarize this research paper. The user has given me a detailed context with specific sections and keywords. They want a concise summary of the entire document within 30 words.\n\nFirst, let's read through the abstracts provided. Both abstracts mention how AI enhances full-stack development by improving problem-solving, collaboration, learning skills, etc. The main points are that AI boosts productivity, addresses innovation challenges, focuses on education and tools, and highlights ethical considerations.\n\nSo, I should capture the key elements: AI empowering developers, productivity gains through tools, collaborative improvements, skill enhancement, competitive disruption, and ethical issues. Also, mention the duration of the degree program.\n\nPutting it all together succinctly within 30 words. Maybe start with \"AI empowers full-stack development...\" and include main points about productivity, collaboration, skills, etc.\n</think>\n\nAI empowers full-stack developers through enhanced problem-solving, collaborative improvements, skill enhancement, leveraging AI tools, addressing innovation challenges, focusing on education, and balancing ethical considerations in a dynamic tech landscape.",
         "sources":"source-data\\9fbd6699-e1b6-4716-9ac1-9ebe6ce46266\\test.pdf, page 1, source-data\\f6948368-5ead-4d24-9545-7f8c3bf4e581\\test.pdf, page 1"
-      }
-    ]
+    }
+  ]
   ```
 
  ![Chat history](readme-img/chat-history-1.png)
